@@ -4,23 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_base"
     tools:context="com.lighthousesample.MainActivity"
     android:id="@+id/constraint_layout">
 
-    <Button
-        android:id="@+id/conn2PiBtn"
+    <com.unstoppable.submitbuttonview.SubmitButton
+        android:id="@+id/connect_and_scan_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connect 2 Pi"
-        app:layout_constraintStart_toStartOf="@+id/lidar_display"
-        app:layout_constraintTop_toTopOf="@+id/lidar_display" />
+        app:buttonColor="#D2E7E2"
+        app:buttonText="Connect and Start"
+        app:buttonTextSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_logo_imgView"
+        app:layout_constraintVertical_bias="0.919" />
+
+    <ImageView
+        android:id="@+id/main_logo_imgView"
+        android:contentDescription="logo"
+        app:srcCompat="@drawable/ic_lidarwebsitelogominimalcirclenewcolorstars"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lidar_display"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lidar_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <com.lighthouse.LidarDisplay
         android:id="@+id/lidar_display"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/lighthouse_title_imgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        app:srcCompat="@drawable/ic_lighthouse_title"
+        app:layout_constraintBottom_toTopOf="@+id/connect_and_scan_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_logo_imgView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/directionArrowImgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/main_logo_imgView"
+        app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

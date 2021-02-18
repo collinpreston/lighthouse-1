@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_base">#112232</color>
+    <color name="contained_button_background">#D2E7E2</color>
+    <color name="contained_button_text">#2D4B73</color>
+    <color name="lighthouse_red_highlight">#E84754</color>
 </resources>

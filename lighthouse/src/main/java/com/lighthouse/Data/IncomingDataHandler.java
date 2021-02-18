@@ -6,9 +6,7 @@ import android.util.Log;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import androidx.annotation.RequiresApi;
 
@@ -129,9 +127,9 @@ public class IncomingDataHandler {
         float[] resultArray = new float[6];
         StandardDeviation standardDeviation = new StandardDeviation();
         Mean mean = new Mean();
-        for (int i=0; i < distanceArray.length; i++) {
-            standardDeviation.increment(distanceArray[i]);
-            mean.increment(distanceArray[i]);
+        for (float v : distanceArray) {
+            standardDeviation.increment(v);
+            mean.increment(v);
         }
 
         double standardDeviationResult = standardDeviation.getResult();

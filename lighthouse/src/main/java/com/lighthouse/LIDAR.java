@@ -36,16 +36,6 @@ public class LIDAR extends Bluetooth {
     private final int MAXIMUM_DISTANCE = 3500;
 
     /**
-     * The command used to start the LIDAR device over bluetooth.
-     */
-    private final String START_COMMAND = "start";
-
-    /**
-     * The command used to stop the LIDAR device over bluetooth.
-     */
-    private final String STOP_COMMAND = "stop";
-
-    /**
      * Configurable value used to filter out distances lower than it.
      */
     private int minimumDistanceFilter = MINIMUM_DISTANCE;
@@ -293,16 +283,13 @@ public class LIDAR extends Bluetooth {
      * Sets the size, in bytes, from which each chunk of data will be sent from the LIDAR to the
      * phone. Returns true if successful.  False if the value passed is not a factor of 42.
      * @param bluetoothBytePacketSize The size, in bytes, of each chunk of data sent from the LIDAR.
-     * @return Success.
      */
-    public boolean setBluetoothBytePacketSize(int bluetoothBytePacketSize) {
+    public void setBluetoothBytePacketSize(int bluetoothBytePacketSize) {
         // Check to make sure the bluetoothBytePacketSize is in increments of 42
         // since that is the byte stream size of each array of data from the LIDAR device.
         if (bluetoothBytePacketSize % 42 == 0) {
             LIDAR.bluetoothBytePacketSize = bluetoothBytePacketSize;
-            return true;
         }
-        return false;
     }
 
     /**
@@ -310,7 +297,10 @@ public class LIDAR extends Bluetooth {
      * sending data.
      */
     public void stopLIDAR() {
-        final String STOP_MESSAGE = STOP_COMMAND;
+        /**
+         * The command used to stop the LIDAR device over bluetooth.
+         */
+        final String STOP_MESSAGE = "stop";
         byte[] msgBuffer = STOP_MESSAGE.getBytes();
         try {
             getOutStream().write(msgBuffer);
@@ -327,6 +317,10 @@ public class LIDAR extends Bluetooth {
         // Set the package size to the configured value in bluetoothBytePacketSize.
         myByteArray = new byte[bluetoothBytePacketSize];
 
+        /**
+         * The command used to start the LIDAR device over bluetooth.
+         */
+        String START_COMMAND = "start";
         final String START_MESSAGE = START_COMMAND + bluetoothBytePacketSize;
         byte[] msgBuffer = START_MESSAGE.getBytes();
         try {
@@ -366,10 +360,7 @@ public class LIDAR extends Bluetooth {
         if (bluetoothIsOn) {
             mBTSocket = connectToLIDARAndGetSocket();
         }
-        if (mBTSocket != null && bluetoothIsOn) {
-            return true;
-        }
-        return false;
+        return mBTSocket != null && bluetoothIsOn;
     }
 
     /**
@@ -463,7 +454,7 @@ public class LIDAR extends Bluetooth {
         }
     }
 
-    private class WriteLidarDataToLog implements Runnable {
+    private static class WriteLidarDataToLog implements Runnable {
 
         final DataPoint[] dataPointArray;
 

@@ -25,8 +25,6 @@ public class GraphPoint extends DataPoint {
 
     private final Paint customPaint = new Paint();
 
-    private String hexColorValue = "#212121";
-
     /**
      * Constructor.
      * @param dataPoint DataPoint object containing data from the LiDAR device.
@@ -38,6 +36,7 @@ public class GraphPoint extends DataPoint {
         calculateXYCoordinatesFromAngleAndDistance();
 
         customPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        String hexColorValue = "#212121";
         customPaint.setColor(Color.parseColor(hexColorValue));
 //        // TODO: Allow the developer to configure this value
         customPaint.setStrokeWidth(3);
