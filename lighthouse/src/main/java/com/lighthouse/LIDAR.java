@@ -385,7 +385,7 @@ public class LIDAR extends Bluetooth {
 
                         // If we received a message from the pi, we will continue with processing it.
                         if (bytes >= bluetoothBytePacketSize) {
-                            Log.i("lighthouse", "read: " + bytes + " of data.");
+                            Log.i("lighthouse", "read: " + bytes + " bytes.");
                             buffer = new byte[bytes];
                             getInStream().read(buffer);
                             System.arraycopy(buffer, 0, myByteArray, 0, bluetoothBytePacketSize);
